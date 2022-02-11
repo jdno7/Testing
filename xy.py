@@ -1,24 +1,32 @@
 import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
-
-img_scale = [[0 for y in range(1344)] for x in range(1008)]
-# raw image dimensions 3024 x 4032
-image = cv.imread("test3.png")
-
-image_list = image.tolist()
-
-rod_x = []
-rod_y = []
-
-for x_idx, x in enumerate(image_list):
-    for y_idx, y in enumerate(x):
-        if sum(y) <= 600:
-            print(x_idx, y_idx)
-            rod_x.append(x_idx)
-            rod_y.append(y_idx)
+from PIL import Image
+from PIL.ExifTags import TAGS
 
 
-plt.plot(rod_x, rod_y)
+def plot_rod(img):
+# img_scale = [[0 for y in range(1344)] for x in range(1008)]
+# # raw image dimensions 3024 x 4032
+    image = cv.imread(img)
 
-plt.show()
+    image_list = image.tolist()
+
+    rod_x = []
+    rod_y = []
+
+    for y_idx, y in enumerate(image_list):
+        for x_idx, x in enumerate(y):
+            if sum(x) <= 175:
+                
+                rod_x.append(x_idx)
+                rod_y.append(y_idx)
+                # rod_x.insert(0,x_idx)
+                # rod_y.insert(0,y_idx)
+
+
+    plt.plot(rod_y,rod_x)
+
+    plt.savefig('newplot.png', dpi=300, bbox_inches='tight')
+
+    # plt.show()
