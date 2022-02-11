@@ -24,9 +24,10 @@ def plot_rod(img):
                 # rod_x.insert(0,x_idx)
                 # rod_y.insert(0,y_idx)
 
+    plt.axis([min(rod_x), max(rod_x), max(rod_y), min(rod_y)-100])
 
-    plt.plot(rod_y,rod_x)
+    plt.plot(rod_x,rod_y)
 
-    plt.savefig('newplot.png', dpi=300, bbox_inches='tight')
+    plt.savefig('newplot.jpeg', dpi=300, bbox_inches='tight')
 
     # plt.show()
